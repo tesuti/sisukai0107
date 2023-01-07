@@ -6,6 +6,7 @@ from django.dispatch import receiver
 # 1対1の関係テーブル
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
     follows = models.ManyToManyField(
         "self",
         # 外部キー
@@ -52,7 +53,6 @@ class Account(models.Model):
 
     # ユーザー認証のインスタンス(1vs1関係)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
     # 追加フィールド
     last_name = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)

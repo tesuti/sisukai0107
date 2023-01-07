@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Profile,Account,User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.views.generic import (ListView, DetailView, CreateView, DeleteView, UpdateView)
+
 @login_required
 def dashboard( request):
     return render(request, "dwitter/dashboard.html")
@@ -49,6 +49,3 @@ def profile(request, pk):
         current_user_profile.save()
     return render(request, "dwitter/profile.html", {"profile": profile})
 
-class DetailUserView( DetailView):
-    template_name = 'dwitter/profile.html'
-    model = User

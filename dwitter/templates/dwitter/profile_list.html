@@ -13,7 +13,7 @@
     <div class="block">
       <div class="card">
         <!--  profile.id を渡す<int:pk> -->
-        <a href="{% url 'profile' account.id %}">
+        <a href="{% url 'profile' account.user.id %}">
           <div class="card-content">
             <div class="media">
               <div class="media-left">
@@ -22,7 +22,7 @@
                 </figure>
               </div>
               <div class="media-content">
-                <p>{{ account.last_name }}</p>
+                <p>{{ account.user.username }}</p>
 <p>{{account.id}}</p>
                 <p>@{{ account.user.username|lower }}</p>
                 <p>{{ account.area }}</p>

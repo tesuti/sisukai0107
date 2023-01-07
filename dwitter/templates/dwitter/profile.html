@@ -8,34 +8,37 @@
     <h1 class="title is-1">
         {{profile.user.username|upper}}'s Dweets
     </h1>
-
+    <div>
+        <img src="{{ profile.user.account.account_image.url}}" alt="{{ account.account_image}}" class="card-img-top">
+        <p>{{profile.user.account.last_name}}　{{profile.user.account.first_name}}</p>
+        <p>{{profile.user.account.age}}</p>
+        <p>{{profile.user.account.area}}</p>
+        <p>{{profile.user.account.category}}</p>
+        <p>{{profile.user.account.hobby}}</p>
+    </div>
     <form method="post">
         {% csrf_token %}
         <div class="buttons has-addons">
         {% if profile in user.profile.follows.all %}
-            <button class="button is-success is-static">
-                Follow
-            </button>
             <button class="button is-danger"
                     name="follow"
                     value="unfollow">
-                Unfollow
+                    💛
             </button>
         {% else %}
             <button class="button is-success"
                     name="follow"
                     value="follow">
-                Follow
+                ♡
             </button>
-            <button class="button is-danger is-static">
-                Unfollow
-            </button>
+
         {% endif %}
         </div>
     </form>
     </div>
 
     <div class="content">
+
         {% for dweet in profile.user.dweets.all %}
             <div class="box">
                 {{ dweet.body }}
