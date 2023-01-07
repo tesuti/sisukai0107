@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="column">
+  <form class="">
+    <input class="" name="q" type="search" placeholder="Search" aria-label="Search">
+    <button class="" type="submit">Search</button>
+  </form>
+{% for account in account %}
+
+    <div class="block">
+      <div class="card">
+        <!--  profile.id を渡す<int:pk> -->
+        <a href="{% url 'profile' account.id %}">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img src="{{ account.account_image.url}}" alt="{{ account.account_image}}" class="card-img-top">
+                </figure>
+              </div>
+              <div class="media-content">
+                <p>{{ account.last_name }}</p>
+<p>{{account.id}}</p>
+                <p>@{{ account.user.username|lower }}</p>
+                <p>{{ account.area }}</p>
+                <p>{{ account.age }}</p>
+                <p>{{ account.hobby }}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+{% endfor %}
+
+</div>
+
+{% endblock content %}

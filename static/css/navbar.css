@@ -1,0 +1,29 @@
+.navbar{
+    display: flex;
+    
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+}
+
+.card-img-top{
+    height: 14em;
+    margin-bottom: 0.8em;
+    transition: transform 0.5s ease;
+    object-fit: cover;
+}
+
+.home{
+    width: 100%;
+    max-width: 90em;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card{
+    margin-top: 10px;
+}
