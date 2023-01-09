@@ -13,10 +13,12 @@
 <body>
     <section class="hero is-small is-success mb-4">
         <div class="hero-body">
+
             <p> ログアウトは
                 <a href="{% url 'Logout' %}">こちら</a>
-                <a href="{% url 'profile_list' %}">ホーム</a>
-
+                <a href="{% url 'dashboard' %}">ホーム</a>
+                <a href="{% url 'profile_list' %}">マッチング</a>
+                <p>{{user.account.last_name}}　{{user.account.first_name}}</p>
             <h1 class="title is-1">Dwitter</h1>
             <p class="subtitle is-4">
                 Your tiny social network built with Django
@@ -24,7 +26,7 @@
         </div>
 
         <div class="container">
-            <div class="columns">
+            <div class="">
     
                 {% block content %}
     

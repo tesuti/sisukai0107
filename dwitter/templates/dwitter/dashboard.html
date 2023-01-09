@@ -5,16 +5,28 @@
 {% block content %}
 
 <div class="column">
-    {% for followed in user.profile.follows.all %}
-        {% for dweet in followed.user.dweets.all %}
-            <div class="box">
-                {{ dweet.body }}
-                <span class="is-small has-text-grey-light">
-                    ({{ dweet.created_at }} by {{ dweet.user.username }}
-                </span>
-            </div>
-        {% endfor %}
-    {% endfor %}
+
+    <p>いいね</p>
+
+<div class="column">
+    <div class="block">
+        <div class="content">
+            <ul>
+            {% for follower in user.profile.followed_by.all %}
+                <li>
+                    <a href="{% url 'UserView' follower.user.id %} ">
+                        <img src="{{ follower.user.account.account_image.url}}" alt="{{ follower.account.account_image}}" class="card-img-top">
+                        <p>{{ follower.user.account.last_name }}　{{ follower.user.account.first_name }}</p>
+                        <p>{{ follower.user.account.hobby }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
 </div>
 
 {% endblock content %}

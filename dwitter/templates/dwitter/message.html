@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>メッセージ</p>
+<p>{{profile.user.account.last_name}}　{{profile.user.account.first_name}}</p>
+<p>{{profile.last_name}}　{{account.first_name}}</p>
+{{ user.name}}
+{% if user.is_authenticated %}
+{% if user.account.id == profile.user.account.id %}
+<a href="{% url 'create' object.pk %}" class="btn btn-primary">投稿</a>
+{% endif %}
+{% endif %}
+
+
+{% for dweet in profile.user.dweets.all %}
+<a href="{% url 'comment' dweet.pk %}">
+<div class="box">
+    {{ dweet.body }}
+    <span class="is-small has-text-grey-light">
+        ({{ dweet.created_at }})
+    </span>
+    {% if user.is_authenticated %}
+{% if user.account.id == profile.user.account.id %}
+<a href="{% url 'update' dweet.pk %}" class="btn btn-primary">編集する</a>
+<a href="{% url 'delete' dweet.id %}" class="btn btn-primary">削除</a>
+{% endif %}
+{% endif %}
+</div>
+</a>
+{% endfor %}
+
+{% endblock content %}

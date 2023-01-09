@@ -1,7 +1,7 @@
 # dwitter/forms.py
 
 from django import forms
-from .models import Dweet, Account
+from .models import Dweet, Account, Comment
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
@@ -34,3 +34,11 @@ class DweetForm(forms.ModelForm):
     class Meta:
         model = Dweet
         exclude = ("user", )
+        fields = ("body", )
+
+class CommentCreateForm(forms.ModelForm):
+    """コメントフォーム"""
+    class Meta:
+        model = Comment
+        fields = ("body",'user', )
+        exclude = ('dweet','created_at', )

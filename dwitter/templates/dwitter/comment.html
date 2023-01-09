@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+    <h1>コメント</h1>
+    {{ dweet.body }}
+    <a href="{% url 'commentCreate' object.pk %}" class="btn btn-primary">コメント</a>
+
+    <section>
+        {% for comment in comment.all %}
+  
+<div class="">
+ {% if dweet.id == comment.dweet.id %}
+    {{ comment.body }}
+    {% if user.account.id == comment.user.account.id %}
+<a href="{% url 'commentUpdate' comment.pk %}" class="btn btn-primary">編集する</a>
+<a href="{% url 'commentDelete' comment.id %}" class="btn btn-primary">削除</a>
+{% endif %}
+{% endif %}
+{% endfor %}
+    </section>
+</section>
+
+{% endblock content %}

@@ -36,8 +36,7 @@ class Dweet(models.Model):
         User, related_name="dweets", on_delete=models.DO_NOTHING
     )
     body = models.CharField(max_length=140)
-    created_at = models.DateTimeField(auto_now_add=True)
-
+    created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return(
             f"{self.user}"
@@ -66,3 +65,17 @@ class Account(models.Model):
     hobby = models.CharField(max_length=100)
     def __str__(self):
         return self.user.username
+
+class Comment(models.Model):
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    dweet = models.ForeignKey(
+        Dweet, on_delete=models.CASCADE)
+    body = models.CharField(max_length=140)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return(
+            f"{self.user}"
+            f"({self.created_at:%Y-%m-%d %H:%M}): "
+            f"{self.body[:30]}..."
+        )
